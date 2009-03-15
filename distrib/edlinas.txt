@@ -1,0 +1,258 @@
+                          EDLINAS
+                        Version 0.85
+                       by Bob Neveln
+Introduction
+
+     Edlinas is a DOS-based interactive debugging
+environment for x86 assembly language.  It operates using a
+simulator of the x86 processors.
+
+     The gnu C compiler, gcc, produces ".s" assembler source
+code files which are written in AT&T style assembler.  AT&T
+assembler has operand types determined by the mnemonic and
+the reverse of the usual ordering of source and destination
+operands.  While there is nothing wrong with either of these
+two features they do create a usage disincentive to those
+who are or wish to be familiar with the more common Intel
+assembler language.
+
+     The most widely used assemblers of Intel source code on
+the other hand are commercial products and have as an
+unconcealed objective, the familiarizing of the programmer
+with proprietary language and operating system interfaces
+whose use will extend the seller's sphere of influence.
+Instead Edlinas is oriented towards Linux, a non-proprietary
+operating system.
+
+Using Edlinas:
+
+To debug an assembler source file, GCD.ASM for example, call
+edlinas from the DOS prompt:
+
+     A:> EDL GCD.ASM
+
+If a line with faulty syntax is encountered it is displayed
+along with an error message.  You may edit the line at that
+time or delete it.  As the program loads, machine code is
+stored in the simulator's memory.  To set the simulator's
+instruction pointer to a particular instruction, move the
+asterisk to the selected instruction and hit the enter key.
+The selected intruction becomes the current instruction
+which is always displayed in yellow.  The space bar executes
+the current instruction and steps to the next instruction.
+
+Edlinas can also be used as a line editor.  The asterisk
+indicates the current line.  Edit commands such as D
+(delete) and I (insert) affect the current line.
+
+To use edlinas as an x86 interpreter, hit the escape key.
+To set registers, for example, one can use an assembly
+language command.  Commands can also be stored in an EDL.INI
+file.
+
+To display other registers, stack or memory use the tab key.
+This alters the right column of the screen.  To move up and
+down within any one of these columns move the asterisk to
+the right and then move it up and down.  The column choices
+are as follows:
+
+Object<->Stack<->Memory<->Segment<->Other<->Symbols<->Help
+ Code                       Regs     Regs
+
+The default column is the object code memory image.
+
+
+Function keys:
+
+F1   Tabs to the help column.
+
+F4   Toggles the screen to and from video memory.
+
+F5   Executes the program slowly,  (walks it).
+
+F6   Same as escape.  Enters the interpreter.
+
+F8   Executes an instruction.  Same as the SpaceBar.
+
+F10  Executes a subroutine CALL.
+
+
+Edlin Style single letter commands:
+
+C Change
+
+     Edit the current line.  The current line is the line
+the star is located on.  The star can be moved by using the
+up and down arrow keys.
+
+D Delete
+
+     Delete the current line.  Deleted lines go onto a
+stack.  They may be restored at the same or some other
+location using either 'P' or 'U'.
+
+E Exit
+
+     Exit the program and save the current source code file.
+
+F Flags
+
+     Reveal the identity of the displayed but unset flags.
+The Z flag is set, for example, when the letter Z is visible
+amongst the flags.
+
+H,J,K,L
+
+     Move the cursor around vi style instead of using the
+arrow keys.
+
+I Insert
+
+     Enter insert mode.  Once insert mode is entered
+assembly language instructions may be entered into the
+program.  Insertion is only carried out if the instruction
+can be successfully assembled.  If not, the instruction can
+be edited.  A blank line, a dot or a Ctrl-Z
+terminates insert mode.
+
+O Dot-o write
+
+     Save an object module.  This is a '.o' file and may be
+linked to other object code on x86-based Linux machines.
+The format may be specified using the DOTO assembler control
+variable as either a.out or ELF.
+
+P Put
+
+     Copy the top of the deleted stack to the current
+location.
+
+Q Quit
+
+     Leave Edlinas without saving the current source code.
+
+R Read
+
+     Merge a file into the current source code.
+
+S Shorten
+
+     Convert a jump to a short jump if this is possible.
+
+T Read
+
+     Same as R.
+
+U Undelete
+
+     Undelete a line.  Pop the delete stack at the current
+location.  The current line is not incremented.  The delete
+stack may therefore be used to move more than one line at
+once.
+
+W Write
+
+     Save the current source code.
+
+Y Yank
+
+     Push a copy of the current line onto the delete stack.
+
+Assembler Language
+
+1. Instruction Set: Edlinas parses and executes the complete
+386 integer instruction set. The x87 co-processor
+instruction set is not implemented.  Smaller instruction
+sets can be selected by setting the assembler control
+variable INSTSET to 286 or 086.  Program input and output
+may be simulated using the instructions IN and OUT.  The
+only ports valid on the simulated machine are port 1 for OUT
+and 0 for IN.  The use of other ports will generate an
+interrupt #18.
+
+2. Labels: Labels must begin with a letter or an underscore
+and may not contain spaces, commas, tabs, brackets, or semi-
+colons.  Labels on the same line as an instruction will be
+displayed using the first three characters only.
+
+3. Operands:
+
+     a)  All register operands may be used.
+
+     b)  Memory operands:  Most common forms of memory
+operands can be parsed provided that they somewhere include
+brackets "[]".  Memory address operands must have brackets.
+
+     c)  Immediate operands: Numbers must be entered in
+either decimal or hexadecimal format.  Numbers must begin
+with a numeral (0-9) or a minus sign.  Hex numbers must end
+with "h".  Symbols may be defined using the ".equ", ".=", or
+".db", assembler directives.
+
+4.  Comments: Comments begin with a semi-colon.
+
+Assembler Directives
+
+     Most assemblers require the use of at least a few
+assembler directives in order to get a program to assemble.
+Edlinas programs can often get by with none at all.  The
+following directives are available:
+
+1.  .db  allocates storage.
+
+2.  .equ or .=  define symbols which do not allocate
+storage.  Current assignments are visible in the Symbols
+column.  The following special symbols change the
+environment when set:
+
+          Simulator Control Variables
+               MEM       Start address for Memory display
+               INSTTIM   The walking time in seconds to     
+                         execute one instruction.
+               ARCH      The processor being simulated.     
+                         This variable may take the values  
+                          086, 286, 386, or 486SX.
+          
+          Assembler Control Variables
+               SIZE      Assembler coding default, 16 or 32.
+               INSTSET   The instruction set being          
+                         assembled. It accepts the same     
+                         values as ARCH.
+               DOTO      Object code format.  It may be ELF
+                         or AOUT.
+
+3.  .globl  This directive is needed to get gcc to recognize
+a symbol.  For example "main" needs to be declared in this
+way.
+
+4.  .text, and .data directives create program segments.
+
+Linking object code
+
+To copy a saved object code file to the Unix environment
+from a floppy:
+
+     linuxbox%> mcopy a:GCD.O gcd.o
+
+To link a dot-o file using gcc:
+
+     linuxbox%> gcc gcd.o
+
+Assembler programs can call subprograms written in C.
+Assembler programs can make Unix system calls.  And C
+programs can call functions written in assembler.
+
+Acknowledgments:
+
+     Elements of the screen layout design and the simulation
+display are adapted from an 8080 simulator program written
+by Dave Felter.
+
+     Much of the code follows quite closely the pseudo-C
+code in Rakesh Agarwal's excellent book 80x86 Architecture &
+Programming, Volume II.  This book can be used as
+documentation for the program.
+
+Suggestions:
+
+     Suggestions are welcome.
