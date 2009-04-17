@@ -1,3 +1,5 @@
 
 Comments on the same line as a ".=" confuse Edlinas when you try to
 use the name.
+
+JNC doesn't work.
