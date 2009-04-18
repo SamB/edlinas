@@ -652,35 +652,35 @@ REM
     LET SAVE.EIP# = EIP#
     LET EIP# = -1#
     SELECT CASE JUMP.NUM
-        CASE 0
+        CASE 0 ' O
             IF OF = 1 THEN EIP# = BRANCH.EIP#
         CASE 1
             IF OF = 0 THEN EIP# = BRANCH.EIP#
-        CASE 2
+        CASE 2 ' B, C, NAE
             IF CF = 1 THEN EIP# = BRANCH.EIP#
         CASE 3
             IF OF = 0 THEN EIP# = BRANCH.EIP#
-        CASE 4
+        CASE 4 ' E, Z
             IF ZF = 1 THEN EIP# = BRANCH.EIP#
-        CASE 5
+        CASE 5 
             IF ZF = 0 THEN EIP# = BRANCH.EIP#
-        CASE 6
+        CASE 6 ' BE, NA
             IF (CF OR ZF) = 1 THEN EIP# = BRANCH.EIP#
         CASE 7
             IF (CF OR ZF) = 0 THEN EIP# = BRANCH.EIP#
-        CASE 8
+        CASE 8 ' S
             IF SF = 1 THEN EIP# = BRANCH.EIP#
         CASE 9
             IF SF = 0 THEN EIP# = BRANCH.EIP#
-        CASE 10
+        CASE 10 ' P, PE
             IF PF = 1 THEN EIP# = BRANCH.EIP#
         CASE 11
             IF PF = 0 THEN EIP# = BRANCH.EIP#
-        CASE 12
+        CASE 12 ' L, NGE
             IF (SF XOR OF) = 1 THEN EIP# = BRANCH.EIP#
         CASE 13
             IF (SF XOR OF) = 0 THEN EIP# = BRANCH.EIP#
-        CASE 14
+        CASE 14 ' LE, NG
             IF ((SF XOR OF) OR ZF) = 1 THEN EIP# = BRANCH.EIP#
         CASE 15
             IF ((SF XOR OF) OR ZF) = 0 THEN EIP# = BRANCH.EIP#
