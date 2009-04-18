@@ -659,7 +659,7 @@ REM
         CASE 2 ' B, C, NAE
             IF CF = 1 THEN EIP# = BRANCH.EIP#
         CASE 3
-            IF OF = 0 THEN EIP# = BRANCH.EIP#
+            IF CF = 0 THEN EIP# = BRANCH.EIP#
         CASE 4 ' E, Z
             IF ZF = 1 THEN EIP# = BRANCH.EIP#
         CASE 5 

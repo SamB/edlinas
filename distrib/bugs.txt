@@ -1,5 +1,11 @@
 
+Existing
+========
+
 Comments on the same line as a ".=" confuse Edlinas when you try to
 use the name.
 
-JNC doesn't work.
+Fixed
+=====
+
+JNC used to be executed as if it were JNO.
