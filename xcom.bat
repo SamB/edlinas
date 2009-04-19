@@ -13,3 +13,5 @@ bc /e/x/o/t/c:512 sim\quasi.bas;
 bc /e/x/o/t/c:512 sim\trap.bas;
 bc /e/x/o/t/c:512 stufstub.bas,st.obj;
 link x86.obj+st.obj+kh.obj+cu.obj+alu.obj+parse.obj+quasi.obj+xx.obj+0f.obj+sg.obj+trap.obj+doto.obj,edl.exe,,qb.lib;
+
+copy edl.exe x86.dat distrib/
