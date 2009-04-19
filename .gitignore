@@ -1,0 +1,21 @@
+# Emacs backup files
+*~
+
+# Files generated during build
+/x86.obj
+/kh.obj
+/cu.obj
+/alu.obj
+/parse.obj
+/xx.obj
+/0f.obj
+/sg.obj
+/doto.obj
+/quasi.obj
+/trap.obj
+/st.obj
+/x86.bi
+/x86.dat
+
+# Edlinas itself makes these
+memvec.dat
