@@ -1,0 +1,11 @@
+In order to build Edlinas, you need QuickBasic 4.5.
+
+Make sure that your PATH and LIB environment variables include the
+QuickBasic installation directory.
+
+Also make sure that the qb.lib file was installed; some versions of
+QuickBasic 4.5 don't automatically install it.
+See http://support.microsoft.com/kb/74357 for instructions.
+
+Then, type "xcom" at the dos command line from the top-level source
+directory (presumably the one containing this file).
