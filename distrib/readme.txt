@@ -82,3 +82,7 @@ Then link with:
 
 The OB.C program parses ".o" object files.  It is useful for
 debugging.
+
+
+SEE ALSO:
+For more detailed documentation, see edlinas.txt.
