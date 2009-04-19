@@ -1,5 +1,5 @@
-COPY SIM\X86.DAT X86.DAT < UTIL\NIL2
-COPY SIM\X86.BI X86.BI < UTIL\NIL2
+COPY SIM\X86.DAT X86.DAT /Y
+COPY SIM\X86.BI X86.BI /Y
 bc /e/x/o/t/c:512 sim\x86.bas;
 bc /e/x/o/t/c:512 sim\keyhelp.bas,kh.obj;
 bc /e/x/o/t/c:512 sim\comutil.bas,cu.obj;
