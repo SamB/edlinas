@@ -1714,7 +1714,7 @@ REM .bss section
 REM .note section
 REM     Leave blank for now
 REM .comment  section                         Total length = 10H
-    PRINT #3, "Edlinas 0.91" + STRING$(4, 0);
+    PRINT #3, "Edlinas 0.92" + STRING$(4, 0);
 REM .shstrtab section           Hex offsets   Total length = 50H
     PRINT #3, CHR$(0);                 '0H
     PRINT #3, ".symtab" + CHR$(0);     '1H

@@ -1283,7 +1283,7 @@ REM             subroutine to initialize the screen
       COLOR 15, 1, 1
       CLS
      
-      PRINT "  EDLINAS 0.91                          "
+      PRINT "  EDLINAS 0.92                          "
       PRINT
       PRINT "General      Source Code                "
       PRINT "Registers    Lbl Mnm Oprnds             "
